@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evolução do Aproveitamento — Arena Futsal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --cor-fundo-template: #02081a;
+    --cor-amarelo: #ffbf00;
+    --cor-branco: #ffffff;
+    --cor-vermelho: #e65050;
+    --cor-verde: #3cc878;
+    --cor-cinza: #96a0b4;
+    --escala-base: 1; /* recalculado via JS = largura real do #card / 1536 */
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: transparent; font-family: 'Poppins', sans-serif; color: var(--cor-branco); overflow-x: hidden; }
+  body.fundo-solido { background: #0a1020; }
+  #card {
+    position: relative; width: min(100vw, 1536px); aspect-ratio: 1536 / 1024; margin: 0 auto;
+    background-color: var(--cor-fundo-template);
+    background-image: url('template_evolucao_arena_futsal.png');
+    background-size: 100% 100%;
+    overflow: hidden;
+  }
+  .abs { position: absolute; }
+
+  #logo-transmissao { left: 0.5%; top: 1%; width: 17%; height: 8%; display: flex; align-items: center; justify-content: center; }
+  #logo-transmissao img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .header-valor {
+    top: 2%; height: 5%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 1px;
+    font-size: calc(24px * var(--escala-base));
+    text-transform: uppercase; color: var(--cor-branco); padding: 0 4px; text-align: center;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.85);
+  }
+  #valor-info { left: 0; width: 100%; }
+
+  #titulo-pagina {
+    top: 4.5%; height: 5.5%; left: 24%; width: 45%;
+    display: none; /* fica reservado caso queira reativar; título fica implícito no gráfico */
+  }
+
+  /* ---- Colunas (uma por time) ---- */
+  .coluna { top: 16%; width: 47%; height: 60%; }
+  #coluna-a { left: 1.5%; }
+  #coluna-b { left: 51.5%; }
+  .divisor { left: 50%; top: 16%; width: 1px; height: 60%; background: rgba(255,255,255,0.18); }
+
+  .coluna-cabecalho { display: flex; align-items: center; justify-content: center; gap: calc(12px * var(--escala-base)); height: 9%; }
+  .coluna-logo { width: calc(52px * var(--escala-base)); height: calc(52px * var(--escala-base)); display: flex; align-items: center; justify-content: center; }
+  .coluna-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .coluna-nome { font-weight: 800; font-size: calc(22px * var(--escala-base)); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(300px * var(--escala-base)); }
+  #coluna-a .coluna-nome { color: var(--cor-amarelo); }
+  #coluna-b .coluna-nome { color: var(--cor-vermelho); }
+
+  .stats-time {
+    text-align: center; margin: 0 auto 0.4em; width: 92%;
+    border: 1px solid rgba(255, 191, 0, 0.45);
+    border-radius: calc(8px * var(--escala-base));
+    background: rgba(2, 8, 26, 0.55);
+    padding: calc(6px * var(--escala-base)) calc(8px * var(--escala-base));
+  }
+  .stats-linha1 {
+    font-weight: 700; font-size: calc(14px * var(--escala-base)); color: #e4e9f4;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: calc(8px * var(--escala-base));
+  }
+  .stats-linha1 span { white-space: nowrap; }
+  .stats-linha1 .destaque { color: var(--cor-amarelo); font-weight: 800; }
+  .stats-linha2 {
+    display: flex; align-items: center; justify-content: center; gap: calc(8px * var(--escala-base));
+    margin-top: calc(4px * var(--escala-base));
+    font-size: calc(12px * var(--escala-base)); color: var(--cor-cinza);
+  }
+  .stats-badge { padding: 2px calc(10px * var(--escala-base)); border-radius: 999px; font-weight: 800; text-transform: uppercase; font-size: calc(11px * var(--escala-base)); }
+  .stats-badge.ouro { background: var(--cor-amarelo); color: #0a0f1f; }
+  .stats-badge.prata { background: #c0c8d6; color: #0a0f1f; }
+  .stats-badge.naoclassificado { background: #3c465c; color: var(--cor-branco); }
+
+  .secao-titulo { text-align: center; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cor-amarelo); font-size: calc(15px * var(--escala-base)); margin: 0.3em 0 0.2em; }
+  .secao-titulo.cinza { color: var(--cor-cinza); }
+
+  .grafico-wrap { width: 100%; height: 36%; }
+  .grafico-wrap svg { width: 100%; height: 100%; display: block; }
+  .grafico-eixo-label { font-family: 'Poppins', sans-serif; font-size: calc(12px * var(--escala-base)); fill: var(--cor-cinza); }
+  .grafico-rotulo-corte { font-family: 'Poppins', sans-serif; font-size: calc(15px * var(--escala-base)); font-weight: 800; }
+  .grafico-rotulo-atual { font-family: 'Poppins', sans-serif; font-size: calc(16px * var(--escala-base)); font-weight: 800; }
+  .grafico-linha-ouro { stroke: var(--cor-amarelo); stroke-width: 1.5; stroke-dasharray: 6 5; opacity: 0.85; }
+  .grafico-linha-prata { stroke: #c0c8d6; stroke-width: 1.5; stroke-dasharray: 6 5; opacity: 0.7; }
+  .grafico-eixo { stroke: rgba(255,255,255,0.15); stroke-width: 1; }
+  .grafico-legenda { display: flex; justify-content: center; gap: calc(16px * var(--escala-base)); margin-bottom: 0.3em; }
+  .grafico-legenda-item { display: flex; align-items: center; gap: 5px; font-size: calc(11px * var(--escala-base)); color: var(--cor-cinza); }
+  .grafico-legenda-traco { width: calc(16px * var(--escala-base)); height: 0; border-top: 2px dashed; display: inline-block; }
+  .legenda-ouro { border-color: var(--cor-amarelo); }
+  .legenda-prata { border-color: #c0c8d6; }
+
+  .resultados-wrap {
+    width: 100%;
+    background: rgba(2, 8, 26, 0.55);
+    border-radius: calc(8px * var(--escala-base));
+    padding: calc(6px * var(--escala-base)) calc(8px * var(--escala-base));
+  }
+  .resultados-lista { column-count: 2; column-gap: calc(10px * var(--escala-base)); transform-origin: top center; }
+  .resultado-linha {
+    display: flex; align-items: center; gap: calc(6px * var(--escala-base));
+    font-size: calc(12px * var(--escala-base)); padding: calc(2px * var(--escala-base)) 0;
+    break-inside: avoid;
+  }
+  .resultado-badge {
+    width: calc(18px * var(--escala-base)); height: calc(18px * var(--escala-base)); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-weight: 800; font-size: calc(10px * var(--escala-base)); color: #0a0f1f;
+  }
+  .badge-v { background: var(--cor-verde); }
+  .badge-e { background: #b8c0d0; }
+  .badge-d { background: var(--cor-vermelho); color: var(--cor-branco); }
+  .resultado-adversario { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #d8dfec; }
+  .resultado-placar { font-weight: 700; color: var(--cor-branco); white-space: nowrap; }
+  .resultado-vazio { text-align: center; color: var(--cor-cinza); font-size: calc(13px * var(--escala-base)); margin-top: 1em; }
+
+  #baixar-btn { display: block; margin: 14px auto 0; padding: 8px 20px; background: var(--cor-amarelo); color: #0a0f1f; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 800; cursor: pointer; }
+  body.modo-overlay #baixar-btn { display: none; }
+  #erro { color: var(--cor-vermelho); text-align: center; padding: 24px; font-size: 14px; background: rgba(0,0,0,0.7); }
+</style>
+</head>
+<body>
+
+<div id="card">
+  <div class="abs" id="logo-transmissao"><img id="logo-transmissao-img" src="" alt="" style="display:none;" onerror="this.style.display='none'" /></div>
+
+  <div class="abs header-valor" id="valor-info">—</div>
+
+  <div class="abs divisor"></div>
+
+  <div class="abs coluna" id="coluna-a">
+    <div class="coluna-cabecalho">
+      <div class="coluna-logo" id="logo-a"><img src="" alt="" style="display:none;" onerror="this.style.display='none'" /></div>
+      <div class="coluna-nome" id="nome-a">—</div>
+    </div>
+    <div class="stats-time" id="stats-a"></div>
+    <div class="secao-titulo cinza">Evolução do Aproveitamento</div>
+    <div class="grafico-legenda">
+      <span class="grafico-legenda-item"><span class="grafico-legenda-traco legenda-ouro"></span>Corte Ouro</span>
+      <span class="grafico-legenda-item"><span class="grafico-legenda-traco legenda-prata"></span>Corte Prata</span>
+    </div>
+    <div class="grafico-wrap" id="grafico-a"></div>
+    <div class="secao-titulo">Resultados da Temporada</div>
+    <div class="resultados-wrap"><div class="resultados-lista" id="resultados-a"></div></div>
+  </div>
+
+  <div class="abs coluna" id="coluna-b">
+    <div class="coluna-cabecalho">
+      <div class="coluna-logo" id="logo-b"><img src="" alt="" style="display:none;" onerror="this.style.display='none'" /></div>
+      <div class="coluna-nome" id="nome-b">—</div>
+    </div>
+    <div class="stats-time" id="stats-b"></div>
+    <div class="secao-titulo cinza">Evolução do Aproveitamento</div>
+    <div class="grafico-legenda">
+      <span class="grafico-legenda-item"><span class="grafico-legenda-traco legenda-ouro"></span>Corte Ouro</span>
+      <span class="grafico-legenda-item"><span class="grafico-legenda-traco legenda-prata"></span>Corte Prata</span>
+    </div>
+    <div class="grafico-wrap" id="grafico-b"></div>
+    <div class="secao-titulo">Resultados da Temporada</div>
+    <div class="resultados-wrap"><div class="resultados-lista" id="resultados-b"></div></div>
+  </div>
+
+</div>
+
+<button id="baixar-btn" onclick="baixarComoImagem()">⬇ Baixar como imagem</button>
+
+<script>
+const SUPABASE_URL = "https://tijoqfkjabapbanpsuqd.supabase.co";
+const SUPABASE_KEY = "sb_publishable_4Cl2yym3lTvWWh1A-mRIFQ_Uk3B5vgP";
+const LOGOS_BUCKET = "logos";
+
+const params = new URLSearchParams(location.search);
+const JOGO_ID = params.get("jogo_id");
+const TORNEIO_PARAM = params.get("torneio");
+const LOGO_TRANSMISSAO = params.get("transmissao");
+const REFRESH_SEGUNDOS = Number(params.get("refresh") || 0);
+if (params.get("modo") === "overlay") document.body.classList.add("modo-overlay");
+if (params.get("fundo") === "solido") document.body.classList.add("fundo-solido");
+
+function logoTransmissaoUrl(arquivo) {
+  return `${SUPABASE_URL}/storage/v1/object/public/${LOGOS_BUCKET}/transmissao/${arquivo}`;
+}
+
+let _cacheListaLogosTimes = null;
+
+function normalizarNomeArquivo(txt) {
+  return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+}
+
+async function listarLogosTimes() {
+  if (_cacheListaLogosTimes !== null) return _cacheListaLogosTimes;
+  try {
+    const resp = await fetch(`${SUPABASE_URL}/storage/v1/object/list/${LOGOS_BUCKET}`, {
+      method: "POST",
+      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ prefix: "times/", limit: 1000 }),
+    });
+    if (!resp.ok) throw new Error(`list falhou (${resp.status})`);
+    const dados = await resp.json();
+    _cacheListaLogosTimes = dados.map((f) => f.name).filter((n) => n && !n.endsWith("/"));
+  } catch (e) {
+    console.error("Não consegui listar logos de times:", e);
+    _cacheListaLogosTimes = [];
+  }
+  return _cacheListaLogosTimes;
+}
+
+async function logoTimeUrlPorNome(nomeTime) {
+  const arquivos = await listarLogosTimes();
+  const nomeNorm = normalizarNomeArquivo(nomeTime);
+  for (const arq of arquivos) {
+    const semExt = arq.replace(/\.[^/.]+$/, "");
+    const arqNorm = normalizarNomeArquivo(semExt);
+    if (arqNorm.startsWith(nomeNorm) || nomeNorm.startsWith(arqNorm)) {
+      return `${SUPABASE_URL}/storage/v1/object/public/${LOGOS_BUCKET}/times/${arq}`;
+    }
+  }
+  return null;
+}
+
+async function fetchJSON(url) {
+  const resp = await fetch(url, { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } });
+  if (!resp.ok) throw new Error(`Falha ao buscar ${url} (${resp.status})`);
+  return resp.json();
+}
+
+async function fetchJogo(jogoId) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/jogos?select=id,competicao_id,time_mandante_id,time_visitante_id,data&id=eq.${jogoId}`);
+  return rows[0] || null;
+}
+async function fetchCompeticao(competicaoId) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/competicoes?select=nome_competicao,divisao,categoria&id=eq.${competicaoId}`);
+  return rows[0] || null;
+}
+async function fetchTimesNomes(ids) {
+  const idsUnicos = [...new Set(ids)];
+  if (idsUnicos.length === 0) return {};
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/times?select=id,nome_app&id=in.(${idsUnicos.join(",")})`);
+  const mapa = {};
+  rows.forEach((r) => (mapa[r.id] = r.nome_app));
+  return mapa;
+}
+async function fetchClassificacao(competicaoId) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/classificacao?select=time_id,pontos,jogos,vitorias,empates,derrotas,gols_pro,gols_contra&competicao_id=eq.${competicaoId}`);
+  const porTime = {};
+  for (const r of rows) {
+    const acc = porTime[r.time_id] || (porTime[r.time_id] = { time_id: r.time_id, pontos: 0, jogos: 0, vitorias: 0, empates: 0, derrotas: 0, gols_pro: 0, gols_contra: 0 });
+    acc.pontos += Number(r.pontos) || 0;
+    acc.jogos += Number(r.jogos) || 0;
+    acc.vitorias += Number(r.vitorias) || 0;
+    acc.empates += Number(r.empates) || 0;
+    acc.derrotas += Number(r.derrotas) || 0;
+    acc.gols_pro += Number(r.gols_pro) || 0;
+    acc.gols_contra += Number(r.gols_contra) || 0;
+  }
+  const lista = Object.values(porTime);
+  lista.forEach((t) => (t.saldo_gols = t.gols_pro - t.gols_contra));
+  lista.sort((a, b) => b.pontos - a.pontos || b.vitorias - a.vitorias || b.saldo_gols - a.saldo_gols || b.gols_pro - a.gols_pro);
+  lista.forEach((t, i) => (t.posicao = i + 1));
+  return lista;
+}
+
+// Todos os jogos FINALIZADOS da temporada pra um time, em ordem cronológica (mais antigo primeiro)
+async function fetchJogosTemporada(competicaoId, timeId) {
+  const rows = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/jogos?select=id,gols_mandante,gols_visitante,time_mandante_id,time_visitante_id,data` +
+    `&competicao_id=eq.${competicaoId}&status=eq.FINALIZADO` +
+    `&or=(time_mandante_id.eq.${timeId},time_visitante_id.eq.${timeId})` +
+    `&order=data.asc`
+  );
+  return rows.map((j) => {
+    const ehMandante = j.time_mandante_id == timeId;
+    const adversarioId = ehMandante ? j.time_visitante_id : j.time_mandante_id;
+    const golsPro = ehMandante ? j.gols_mandante : j.gols_visitante;
+    const golsContra = ehMandante ? j.gols_visitante : j.gols_mandante;
+    let resultado;
+    if (golsPro > golsContra) resultado = "V";
+    else if (golsPro === golsContra) resultado = "E";
+    else resultado = "D";
+    return { adversarioId, golsPro, golsContra, resultado, data: j.data };
+  });
+}
+
+function calcularFaixas(totalTimes) {
+  if (totalTimes <= 0) return { ouro: 0, prata_fim: 0 };
+  return { ouro: Math.min(8, totalTimes), prata_fim: Math.min(16, totalTimes) };
+}
+
+// Aproveitamento (%) de quem está HOJE na última posição de cada faixa — vira a linha de corte
+function calcularCortesFaixas(classificacao) {
+  const faixas = calcularFaixas(classificacao.length);
+  const timeOuro = classificacao.find((t) => t.posicao === faixas.ouro);
+  const timePrata = classificacao.find((t) => t.posicao === faixas.prata_fim);
+  const aprov = (t) => (t ? (t.pontos / Math.max(t.jogos * 3, 1)) * 100 : null);
+  return { corteOuro: aprov(timeOuro), cortePrata: aprov(timePrata) };
+}
+
+async function fetchJogosRestantes(competicaoId, timeId) {
+  const rows = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/jogos?select=id&competicao_id=eq.${competicaoId}&status=eq.AGENDADO` +
+    `&or=(time_mandante_id.eq.${timeId},time_visitante_id.eq.${timeId})`
+  );
+  return rows.length;
+}
+
+function classeStatusFaixa(tipo) {
+  if (tipo === "Ouro") return "ouro";
+  if (tipo === "Prata") return "prata";
+  return "naoclassificado";
+}
+
+function montarStatsTime(container, timeClassificacao, tipoFaixa, jogosRestantes) {
+  container.innerHTML = "";
+  if (!timeClassificacao) return;
+  const t = timeClassificacao;
+  const aproveitamento = (t.pontos / Math.max(t.jogos * 3, 1)) * 100;
+
+  const linha1 = document.createElement("div");
+  linha1.className = "stats-linha1";
+  linha1.innerHTML = `
+    <span><span class="destaque">${t.posicao}º</span> colocado</span>
+    <span><span class="destaque">${t.pontos}</span> pts</span>
+    <span>${t.jogos}J</span>
+    <span>${t.vitorias}V ${t.empates}E ${t.derrotas}D</span>
+    <span>SG ${t.saldo_gols > 0 ? "+" : ""}${t.saldo_gols}</span>
+    <span><span class="destaque">${aproveitamento.toFixed(1)}%</span> aprov.</span>`;
+  container.appendChild(linha1);
+
+  const linha2 = document.createElement("div");
+  linha2.className = "stats-linha2";
+  linha2.innerHTML = `
+    <span class="stats-badge ${classeStatusFaixa(tipoFaixa)}">${tipoFaixa}</span>
+    <span>${jogosRestantes} jogo(s) restante(s)</span>`;
+  container.appendChild(linha2);
+}
+
+// Série de aproveitamento acumulado (%) jogo a jogo
+function calcularSerieAproveitamento(jogosTemporada) {
+  let pontos = 0;
+  const serie = [];
+  jogosTemporada.forEach((j, i) => {
+    pontos += j.resultado === "V" ? 3 : j.resultado === "E" ? 1 : 0;
+    const numJogos = i + 1;
+    serie.push({ rodada: numJogos, aproveitamento: (pontos / (numJogos * 3)) * 100 });
+  });
+  return serie;
+}
+
+function montarGraficoSVG(container, serie, cortes, corLinha) {
+  container.innerHTML = "";
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  const W = 600, H = 220, margemEsq = 34, margemDir = 48, margemTopo = 8, margemBase = 20;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("preserveAspectRatio", "none");
+
+  const areaW = W - margemEsq - margemDir;
+  const areaH = H - margemTopo - margemBase;
+  const yParaPx = (v) => margemTopo + areaH - (Math.max(0, Math.min(100, v)) / 100) * areaH;
+
+  // eixo Y (linhas de grade + labels)
+  [0, 25, 50, 75, 100].forEach((v) => {
+    const y = yParaPx(v);
+    const linha = document.createElementNS(NS, "line");
+    linha.setAttribute("x1", margemEsq); linha.setAttribute("x2", W - margemDir);
+    linha.setAttribute("y1", y); linha.setAttribute("y2", y);
+    linha.setAttribute("class", "grafico-eixo");
+    svg.appendChild(linha);
+    const label = document.createElementNS(NS, "text");
+    label.setAttribute("x", margemEsq - 6); label.setAttribute("y", y + 3);
+    label.setAttribute("text-anchor", "end");
+    label.setAttribute("class", "grafico-eixo-label");
+    label.textContent = v;
+    svg.appendChild(label);
+  });
+
+  if (serie.length === 0) {
+    const aviso = document.createElementNS(NS, "text");
+    aviso.setAttribute("x", W / 2); aviso.setAttribute("y", H / 2);
+    aviso.setAttribute("text-anchor", "middle");
+    aviso.setAttribute("class", "grafico-eixo-label");
+    aviso.textContent = "Sem jogos finalizados ainda";
+    svg.appendChild(aviso);
+    container.appendChild(svg);
+    return;
+  }
+
+  const xParaPx = (rodada) => margemEsq + (serie.length === 1 ? areaW / 2 : ((rodada - 1) / (serie.length - 1)) * areaW);
+
+  // linhas de corte Ouro/Prata
+  if (cortes.corteOuro !== null) {
+    const y = yParaPx(cortes.corteOuro);
+    const linha = document.createElementNS(NS, "line");
+    linha.setAttribute("x1", margemEsq); linha.setAttribute("x2", W - margemDir);
+    linha.setAttribute("y1", y); linha.setAttribute("y2", y);
+    linha.setAttribute("class", "grafico-linha-ouro");
+    svg.appendChild(linha);
+    const label = document.createElementNS(NS, "text");
+    label.setAttribute("x", W - margemDir + 4); label.setAttribute("y", y + 4);
+    label.setAttribute("class", "grafico-rotulo-corte");
+    label.setAttribute("fill", "var(--cor-amarelo)");
+    label.textContent = `${cortes.corteOuro.toFixed(1)}%`;
+    svg.appendChild(label);
+  }
+  if (cortes.cortePrata !== null) {
+    const y = yParaPx(cortes.cortePrata);
+    const linha = document.createElementNS(NS, "line");
+    linha.setAttribute("x1", margemEsq); linha.setAttribute("x2", W - margemDir);
+    linha.setAttribute("y1", y); linha.setAttribute("y2", y);
+    linha.setAttribute("class", "grafico-linha-prata");
+    svg.appendChild(linha);
+    const label = document.createElementNS(NS, "text");
+    label.setAttribute("x", W - margemDir + 4); label.setAttribute("y", y + 4);
+    label.setAttribute("class", "grafico-rotulo-corte");
+    label.setAttribute("fill", "#c0c8d6");
+    label.textContent = `${cortes.cortePrata.toFixed(1)}%`;
+    svg.appendChild(label);
+  }
+
+  // linha do time
+  const pontosPath = serie.map((p) => `${xParaPx(p.rodada)},${yParaPx(p.aproveitamento)}`).join(" ");
+  const polyline = document.createElementNS(NS, "polyline");
+  polyline.setAttribute("points", pontosPath);
+  polyline.setAttribute("fill", "none");
+  polyline.setAttribute("stroke", corLinha);
+  polyline.setAttribute("stroke-width", "4");
+  polyline.setAttribute("stroke-linejoin", "round");
+  polyline.setAttribute("stroke-linecap", "round");
+  svg.appendChild(polyline);
+
+  // ponto final destacado + valor atual
+  const ultimo = serie[serie.length - 1];
+  const cx = xParaPx(ultimo.rodada);
+  const cy = yParaPx(ultimo.aproveitamento);
+  const circulo = document.createElementNS(NS, "circle");
+  circulo.setAttribute("cx", cx);
+  circulo.setAttribute("cy", cy);
+  circulo.setAttribute("r", 4);
+  circulo.setAttribute("fill", corLinha);
+  svg.appendChild(circulo);
+
+  const rotuloAtual = document.createElementNS(NS, "text");
+  const acimaOuAbaixo = cy < margemTopo + 20 ? 1 : -1; // se o ponto tá muito perto do topo, escreve embaixo
+  rotuloAtual.setAttribute("x", cx);
+  rotuloAtual.setAttribute("y", cy + acimaOuAbaixo * 13);
+  rotuloAtual.setAttribute("text-anchor", cx > W - margemDir - 30 ? "end" : "middle");
+  rotuloAtual.setAttribute("class", "grafico-rotulo-atual");
+  rotuloAtual.setAttribute("fill", corLinha);
+  rotuloAtual.textContent = `${ultimo.aproveitamento.toFixed(1)}%`;
+  svg.appendChild(rotuloAtual);
+
+  container.appendChild(svg);
+}
+
+function montarListaResultados(container, jogosTemporada, nomesTimes) {
+  container.innerHTML = "";
+  container.style.transform = "none";
+  if (jogosTemporada.length === 0) {
+    const vazio = document.createElement("div");
+    vazio.className = "resultado-vazio";
+    vazio.textContent = "Nenhum jogo finalizado ainda.";
+    container.appendChild(vazio);
+    return;
+  }
+  // mais recente primeiro
+  [...jogosTemporada].reverse().forEach((j) => {
+    const linha = document.createElement("div");
+    linha.className = "resultado-linha";
+    const adversario = nomesTimes[j.adversarioId] || "—";
+    linha.innerHTML = `
+      <span class="resultado-badge badge-${j.resultado.toLowerCase()}">${j.resultado}</span>
+      <span class="resultado-adversario">${adversario}</span>
+      <span class="resultado-placar">${j.golsPro}x${j.golsContra}</span>`;
+    container.appendChild(linha);
+  });
+}
+
+// Igual ao ajuste anti-estouro do confronto.html/classificacao.html: mede e encolhe se não couber
+function ajustarEscalaLista(container) {
+  container.style.transform = "none";
+  const coluna = container.closest(".coluna");
+  const rectColuna = coluna.getBoundingClientRect();
+  const rectLista = container.getBoundingClientRect();
+  const limiteInferior = rectColuna.top + rectColuna.height;
+  const disponivel = limiteInferior - rectLista.top;
+  const necessario = rectLista.height;
+  if (necessario > disponivel && disponivel > 0) {
+    const escala = Math.max(disponivel / necessario, 0.5);
+    container.style.transform = `scale(${escala})`;
+    container.style.transformOrigin = "top center";
+  }
+}
+
+function aplicarEscalaBase() {
+  const card = document.getElementById("card");
+  const escala = card.clientWidth / 1536; // 1536 = largura de design
+  document.documentElement.style.setProperty("--escala-base", escala);
+}
+
+async function montarPagina() {
+  aplicarEscalaBase();
+  if (LOGO_TRANSMISSAO) {
+    const img = document.getElementById("logo-transmissao-img");
+    img.src = logoTransmissaoUrl(LOGO_TRANSMISSAO);
+    img.style.display = "block";
+  }
+
+  if (!JOGO_ID) {
+    document.getElementById("card").insertAdjacentHTML("beforeend", '<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Faltou o parâmetro ?jogo_id= na URL.</div>');
+    return;
+  }
+
+  const jogo = await fetchJogo(JOGO_ID);
+  if (!jogo) {
+    document.getElementById("card").insertAdjacentHTML("beforeend", '<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Jogo não encontrado.</div>');
+    return;
+  }
+
+  const [competicao, nomesTimesJogo] = await Promise.all([
+    fetchCompeticao(jogo.competicao_id),
+    fetchTimesNomes([jogo.time_mandante_id, jogo.time_visitante_id]),
+  ]);
+
+  const nomeA = nomesTimesJogo[jogo.time_mandante_id] || "—";
+  const nomeB = nomesTimesJogo[jogo.time_visitante_id] || "—";
+
+  const partesHeader = [TORNEIO_PARAM || competicao?.nome_competicao, competicao?.divisao, competicao?.categoria]
+    .filter(Boolean)
+    .map((p) => p.toUpperCase());
+  document.getElementById("valor-info").textContent = partesHeader.length ? partesHeader.join("  •  ") : "—";
+
+  document.getElementById("nome-a").textContent = nomeA;
+  document.getElementById("nome-b").textContent = nomeB;
+
+  const [logoUrlA, logoUrlB] = await Promise.all([logoTimeUrlPorNome(nomeA), logoTimeUrlPorNome(nomeB)]);
+  if (logoUrlA) { const img = document.querySelector("#logo-a img"); img.src = logoUrlA; img.style.display = "block"; }
+  if (logoUrlB) { const img = document.querySelector("#logo-b img"); img.src = logoUrlB; img.style.display = "block"; }
+
+  const classificacao = await fetchClassificacao(jogo.competicao_id);
+  const cortes = calcularCortesFaixas(classificacao);
+
+  const ca = classificacao.find((t) => t.time_id == jogo.time_mandante_id);
+  const cb = classificacao.find((t) => t.time_id == jogo.time_visitante_id);
+  const faixas = calcularFaixas(classificacao.length);
+  const tipoFaixa = (t) => {
+    if (!t) return "Não Classificado";
+    if (t.posicao <= faixas.ouro) return "Ouro";
+    if (t.posicao <= faixas.prata_fim) return "Prata";
+    return "Não Classificado";
+  };
+
+  const [restantesA, restantesB] = await Promise.all([
+    fetchJogosRestantes(jogo.competicao_id, jogo.time_mandante_id),
+    fetchJogosRestantes(jogo.competicao_id, jogo.time_visitante_id),
+  ]);
+  montarStatsTime(document.getElementById("stats-a"), ca, tipoFaixa(ca), restantesA);
+  montarStatsTime(document.getElementById("stats-b"), cb, tipoFaixa(cb), restantesB);
+
+  const [jogosA, jogosB] = await Promise.all([
+    fetchJogosTemporada(jogo.competicao_id, jogo.time_mandante_id),
+    fetchJogosTemporada(jogo.competicao_id, jogo.time_visitante_id),
+  ]);
+
+  // nomes de todos os adversários enfrentados pelos dois times na temporada
+  const idsAdversarios = [...jogosA, ...jogosB].map((j) => j.adversarioId);
+  const nomesAdversarios = await fetchTimesNomes(idsAdversarios);
+
+  const serieA = calcularSerieAproveitamento(jogosA);
+  const serieB = calcularSerieAproveitamento(jogosB);
+
+  const corAmarelo = getComputedStyle(document.documentElement).getPropertyValue("--cor-amarelo").trim();
+  const corVermelho = getComputedStyle(document.documentElement).getPropertyValue("--cor-vermelho").trim();
+  montarGraficoSVG(document.getElementById("grafico-a"), serieA, cortes, corAmarelo);
+  montarGraficoSVG(document.getElementById("grafico-b"), serieB, cortes, corVermelho);
+
+  montarListaResultados(document.getElementById("resultados-a"), jogosA, nomesAdversarios);
+  montarListaResultados(document.getElementById("resultados-b"), jogosB, nomesAdversarios);
+
+  ajustarEscalaLista(document.getElementById("resultados-a"));
+  ajustarEscalaLista(document.getElementById("resultados-b"));
+}
+
+function baixarComoImagem() {
+  const btn = document.getElementById("baixar-btn");
+  btn.style.display = "none";
+  html2canvas(document.getElementById("card"), { backgroundColor: null, scale: 2, useCORS: true }).then((canvas) => {
+    btn.style.display = "block";
+    const link = document.createElement("a");
+    link.download = "evolucao_aproveitamento.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+montarPagina().catch((err) => {
+  console.error(err);
+  document.getElementById("card").insertAdjacentHTML("beforeend", `<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Erro ao carregar dados: ${err.message}</div>`);
+});
+
+let _resizeTimer = null;
+window.addEventListener("resize", () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => {
+    aplicarEscalaBase();
+    ajustarEscalaLista(document.getElementById("resultados-a"));
+    ajustarEscalaLista(document.getElementById("resultados-b"));
+  }, 150);
+});
+
+if (REFRESH_SEGUNDOS > 0) {
+  setInterval(() => location.reload(), REFRESH_SEGUNDOS * 1000);
+}
+</script>
+
+</body>
+</html>
