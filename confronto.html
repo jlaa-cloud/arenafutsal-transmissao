@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]},feature_flags:["soft_nav"]};(window.NREUM||(NREUM={})).loader_config={licenseKey:"aece2c08f5",applicationID:"543213780",browserID:"545240898"};;/*! For license information please see nr-loader-rum-1.320.1.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),s=0===Object.keys(r).length?e:r;for(let a in s)if(void 0!==e[a])try{if(null===e[a]){r[a]=null;continue}Array.isArray(e[a])&&Array.isArray(t[a])?r[a]=Array.from(new Set([...e[a],...t[a]])):e[a]instanceof Map||e[a]instanceof Set||e[a]instanceof Date||e[a]instanceof RegExp?r[a]=e[a]:"object"==typeof e[a]&&null!==t[a]&&"object"==typeof t[a]?r[a]=i(e[a],t[a]):r[a]=e[a]}catch(e){r[a]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>a});var n=r(384),i=r(8122);const s={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function a(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,s)])},7699(e,t,r){"use strict";var n=r(860);const i={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,1e6,"KC",0,i,"qh",0,"SESSION_ERROR"])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.320.1"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,s="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),a=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===a?.document?.visibilityState),c=""+a?.location,u=/iPad|iPhone|iPod/.test(a.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=a.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,s,"gm",0,a,"m",0,c,"mw",0,o,"sb",0,d,"zk",0,()=>{const e=a?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<a.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>o,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),s=r(860),a=r(2646);function o(e,t){if(!e)return;const r={staged:!1,priority:s.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const s=e.ee,o=i.i.handlers;if(s&&!s.aborted&&s.backlog&&o){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=s.backlog[t],r=o[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof a.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}s.isolatedBacklog||delete o[t],s.backlog[t]=null,s.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],s=e[2];n.apply(i,s)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),s=r(2646),a=r(5607);const o="nr@context:".concat(a.W),c=function e(t,r){var n={},a={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,s){!1!==s&&(s=!0);if(c.aborted&&!i)return;t&&s&&t.emit(e,r,n);var o=g(n);m(e).forEach(e=>{e.apply(o,r)});var u=v()[a[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{a[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[a[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof s.y?e:e?(0,i.I)(e,o,()=>new s.y(o)):new s.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,o,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,s){s?(s.buffer([e],i),s.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>s});var n=r(9908);s.on=a;var i=s.handlers={};function s(e,t,r,s){a(s||n.d,i,e,t,r)}function a(e,t,r,i,s){s||(s="feature"),e||(e=n.d);var a=t[s]=t[s]||{};(a[r]=a[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function s(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>s,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>a,bz:()=>s});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function s(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function a(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,s=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const a=[];for(var o=0;o<e;o++)a.push(i(r,s++).toString(16));return a.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>s});var n=r(944);const i=new Map;function s(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),s=t.includes("nrWrapper");return r||s||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>a,Qr:()=>c,sB:()=>o});var n=r(3878),i=r(6389);function s(){return"undefined"==typeof document||"complete"===document.readyState}function a(e,t){if(s())return e();const r=(0,i.J)(e),a=setInterval(()=>{s()&&(clearInterval(a),r())},500);(0,n.sp)("load",r,t)}function o(e){if(s())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(s())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),s=r(944),a=r(1910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,a.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,s.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,o])},2843(e,t,r){"use strict";r.d(t,{G:()=>s,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function s(e,t,r){(0,n.sp)("pagehide",e,t,r)}},9300(e,t,r){"use strict";r(860).K7.ajax;r.d(t,["mo",0,{NONE:"none",FAILURES:"failures",ALL:"all"}])},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>s});var n=r(9566),i=r(1741);class s extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>s});var n=r(944),i=r(4261);class s{#e(e,...t){if(this[e]!==s.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),s=r(1863),a=r(944),o=r(3969),c=r(8362),u=r(860);function d(e,t,r,s){const d=s||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(o.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,a.R)(23,e)}})}function l(e,t,r,n,a){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(a||null===r)&&(0,i.p)("api-"+n,[(0,s.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",s="browser/blobs",a="browser/logs",o={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[o.pageViewEvent]:1,[o.pageViewTiming]:2,[o.metrics]:3,[o.jserrors]:4,[o.softNav]:5,[o.ajax]:6,[o.sessionTrace]:7,[o.sessionReplay]:8,[o.logging]:9,[o.genericEvents]:10},u={[o.pageViewEvent]:"rum",[o.pageViewTiming]:n,[o.ajax]:n,[o.softNav]:n,[o.metrics]:i,[o.jserrors]:i,[o.sessionTrace]:s,[o.sessionReplay]:s,[o.logging]:a,[o.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,o,"P3",0,c,"XX",0,i,"Yy",0,a,"df",0,s])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const s=t[n]={exports:{}};return e[n](s,s.exports,r),s.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],s=t[n++];r.o(e,i)?0===s&&n++:0===s?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:s})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.320.1.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.320.1.PROD:";r.l=(n,i,s,a)=>{if(e[n])return void e[n].push(i);let o,c;if(void 0!==s){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+s){o=r;break}}}if(!o){c=!0;var d={296:"sha512-tVt1vBEIdH0cbF0+FX2YAtMEq3dHpAui3eZmJce4ncISLbsfSol5l/6zmO5AGwZq7lhKosE9/EY+uwxfn03iYw=="};o=document.createElement("script"),o.charset="utf-8",r.nc&&o.setAttribute("nonce",r.nc),o.setAttribute("data-webpack",t+s),o.src=n,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),d[a]&&(o.integrity=d[a])}e[n]=[i];const l=(t,r)=>{o.onerror=o.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],o.parentNode?.removeChild(o),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=l.bind(null,o.onerror),o.onload=l.bind(null,o.onload),c&&document.head.appendChild(o)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const s=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=s);const a=r.p+r.u(t),o=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;o.message="Loading chunk "+t+" failed: ("+e+": "+r+")",o.name="ChunkLoadError",o.type=e,o.request=r,i[1](o)}};r.l(a,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,s,a]=n;var o,c,u=0;if(i.some(t=>0!==e[t])){for(o in s)r.o(s,o)&&(r.m[o]=s[o]);if(a)a(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.320.1.PROD"]=self["webpackChunk:NRBA-1.320.1.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),s=r(1741);var a=r(2555),o=r(981);t.K7.genericEvents,o.R.PA,o.R.UA,o.R.BP;const c={RESOURCES:"experimental.resources",REGISTER:"register"};var u=r(9300);const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var l=r(2614),f=r(944),g=r(8122);const p="[data-nr-mask]",m=e=>(0,g.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1,iframe_bridge:!1,iframe_domains:[]},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:u.mo.NONE},api:{register:{get enabled(){return e.feature_flags.includes(c.REGISTER)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1,get allow_iframe_bridge(){return e.feature_flags.includes(c.IFRAME_BRIDGE)||e.experimental.iframe_bridge},set allow_iframe_bridge(t){e.experimental.iframe_bridge=t},get iframe_domains(){return e.experimental.iframe_domains},set iframe_domains(t){Array.isArray(t)?e.experimental.iframe_domains=t:(0,f.R)(1,t)}}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:l.wk,inactiveMs:l.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(p):""===t||null===t?e.mask_selector=p:(0,f.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,f.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,f.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var h=r(6154),v=r(9324);let b=0;const y={buildEnv:"PROD",distMethod:"CDN",version:v.xv,originTime:h.WN},_={consented:!1},w={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||_.consented},set consented(e){_.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,harvester:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++b},listeningForIframeMessages:!1};var R=r(7836),A=r(3241);const x={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};var E=r(9908);const S="newrelic-iframe-";function k(e,t={},n,o){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var p;e.init=m(c||{}),e.loader_config=(p=d||{},(0,g.a)(p,x)),u.jsAttributes??={},h.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,a.D)(u);const v=e.init;e.runtime??=(e=>{const t=(0,g.a)(e,w),r=Object.keys(y).reduce((e,t)=>(e[t]={value:y[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),v.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(v.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(s.W.prototype).forEach(r=>{const n=s.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=R.ee.get(e.agentIdentifier),e.exposed=f,(0,A.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.init.api.register.allow_iframe_bridge&&h.gm.addEventListener("message",t=>{"string"==typeof t.data?.type&&t.data.type.startsWith(S)&&(0,E.p)("iframe-message",[t],void 0,"IFRAME",e.ee)}),e.runtime.configured=!0)}var T=r(1863),j=r(4261),P=r(1738);var N=r(1687),O=r(4234),M=r(5289),I=r(7767);function D(e){return!!(0,i.dV)().o.MO&&(0,I.V)(e)&&!0===e?.session_trace.enabled}var V=r(6389),W=r(7699);const B=new WeakSet;class K extends O.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,V.J)(()=>{(0,N.Ak)(e,this.featureName),t()}))}):(0,N.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,a.f)(e.info))return(0,f.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);let i;try{if((0,I.V)(e.init)){const{setupAgentSession:t}=await r.e(296).then(r.bind(r,8391));i=t(e)}}catch(e){(0,f.R)(20,e),this.ee.emit("internal-error",[e]),(0,E.p)(W.qh,[e],void 0,this.featureName,this.ee)}if(e.init.api.register.allow_iframe_bridge)try{const{setupIframeMFEMessageListener:t}=await Promise.resolve().then(function(){const e=new Error("Cannot find module '../../loaders/configure/iframe-message-handler'");throw e.code="MODULE_NOT_FOUND",e});t(e)}catch(e){(0,f.R)(23,e)}try{if(!this.#r(this.featureName,i,e.init))return(0,N.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,f.R)(34,e),this.abortHandler?.(),(0,N.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1),this.ee&&this.ee.abort()}};h.RI?(0,M.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return D(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!B.has(e)&&(B.add(e),!(0,a.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}k(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var C=r(6630);class U extends K{static featureName=C.T;constructor(e){var t;super(e,C.T),this.setupInspectionEvents(),t=e,(0,P.Y)(j.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,E.p)("api-"+j.Fw,[(0,T.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>r.e(296).then(r.bind(r,1324)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,A.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,M.sB)(t=>{e(t,"DOMContentLoaded")}),(0,M.GG)(t=>{e(t,"load")}),(0,M.Qr)(t=>{e(t,"navigate")}),this.ee.on(l.tS.UPDATE,(e,t)=>{(0,A.W)({type:"lifecycle",name:"session",data:t})})}}class L extends e.d{constructor(e){var t;(super(),h.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(U),k(this,e,e.loaderType||"agent"),t=this,(0,P.Y)(j.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,P.U)(t,e,r,j.cD,n);(0,f.R)(40,typeof r)}else(0,f.R)(39,typeof e)},t),function(e){(0,P.Y)(j.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,f.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,E.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,P.U)(e,"enduser.id",t,j.Dl,!0)},e)}(this),function(e){(0,P.Y)(j.nb,function(t){if("string"==typeof t||null===t)return(0,P.U)(e,"application.version",t,j.nb,!1);(0,f.R)(42,typeof t)},e)}(this),function(e){(0,P.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,P.Y)(j.Pv,function(t=!0){if("boolean"==typeof t){if((0,E.p)("api-"+j.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum()})}}else(0,f.R)(65,typeof t)},e)}(this),this.run()):(0,f.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures];r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&r.featureName!==t.K7.pageViewEvent)return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,f.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,f.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var F=r(2843),G=r(782);class H extends K{static featureName=G.T;constructor(e){super(e,G.T),h.RI&&((0,F.u)(()=>(0,E.p)("docHidden",[(0,T.t)()],void 0,G.T,this.ee),!0),(0,F.G)(()=>(0,E.p)("winPagehide",[(0,T.t)()],void 0,G.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9981))))}}var z=r(3969);class Y extends K{static featureName=z.TZ;constructor(e){super(e,z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new L({features:[U,H,Y],loaderType:"lite"})})()})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ficha de Transmissão — Arena Futsal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --cor-fundo-template: #02081a;
+    --cor-amarelo: #ffbf00;
+    --cor-branco: #ffffff;
+    --cor-vermelho: #e65050;
+    --cor-verde: #3cc878;
+    --cor-cinza: #96a0b4;
+    --escala-base: 1; /* recalculado via JS = largura real do #card / 1536 */
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: transparent; font-family: 'Poppins', sans-serif; color: var(--cor-branco); overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
+  body.fundo-solido { background: #0a1020; }
+  #card {
+    position: relative; width: min(100vw, 1536px, calc(100vh * 1.5)); aspect-ratio: 1536 / 1024; margin: 0 auto;
+    background-image: url('template_ficha_transmissao_arena_futsal.png');
+    background-size: 100% 100%; overflow: hidden;
+  }
+  .abs { position: absolute; }
+  #logo-transmissao { left: 0.5%; top: 0.5%; width: 24%; height: 11%; display: flex; align-items: center; justify-content: center; }
+  #logo-transmissao img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .header-valor {
+    top: 4.5%; height: 5.5%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 1px;
+    font-size: calc(28px * var(--escala-base));
+    text-transform: uppercase; color: var(--cor-branco); padding: 0 4px; text-align: center;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  #valor-info { left: 0; width: 100%; }
+  .logo-time { top: 23%; width: 15.6%; height: 20.5%; display: flex; align-items: center; justify-content: center; }
+  .logo-time img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  #logo-a { left: 5%; }
+  #logo-b { left: 79.4%; }
+  .barra-nome {
+    top: 43%; width: 15.63%; height: 5.6%;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; line-height: 1.15; padding: 0 4px;
+  }
+  #barra-a { left: 4.56%; }
+  #barra-b { left: 79.82%; }
+  .barra-nome .nome { font-weight: 800; font-size: calc(19px * var(--escala-base)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  #barra-a .nome { color: var(--cor-amarelo); }
+  #barra-b .nome { color: var(--cor-branco); }
+  .situacao-time { top: 51.5%; width: 15.63%; text-align: center; }
+  #situacao-a { left: 4.56%; }
+  #situacao-b { left: 79.82%; }
+  .situacao-time .pos { font-size: calc(18px * var(--escala-base)); font-weight: 600; color: #d8dfec; margin-bottom: 16px; }
+  .situacao-time .badge span { display: inline-block; padding: 3px 12px; border-radius: 999px; font-weight: 800; font-size: calc(14px * var(--escala-base)); text-transform: uppercase; white-space: nowrap; }
+  .badge-ouro { background: var(--cor-amarelo); color: #0a0f1f; }
+  .badge-prata { background: #c0c8d6; color: #0a0f1f; }
+  .badge-bronze { background: #cd7f32; color: var(--cor-branco); }
+  .badge-naoclassificado { background: #3c465c; color: var(--cor-branco); }
+  #centro { left: 20%; top: 21%; width: 60%; }
+  .secao-titulo { text-align: center; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cor-amarelo); font-size: calc(16px * var(--escala-base)); margin: 0.6em 0 0.4em; }
+  .secao-titulo.cinza { color: var(--cor-cinza); font-size: calc(20px * var(--escala-base)); }
+  .prob-linha { display: flex; align-items: center; gap: calc(14px * var(--escala-base)); }
+  .prob-valor { font-weight: 800; font-size: calc(46px * var(--escala-base)); min-width: calc(84px * var(--escala-base)); }
+  .prob-valor.a { color: var(--cor-amarelo); text-align: right; }
+  .prob-valor.b { color: var(--cor-vermelho); text-align: left; }
+  .prob-barra { flex: 1; height: calc(18px * var(--escala-base)); border-radius: 999px; background: #1a2e5a; overflow: hidden; display: flex; }
+  .prob-barra .a { background: var(--cor-amarelo); }
+  .prob-barra .b { background: var(--cor-vermelho); }
+  .favorito { text-align: center; font-style: italic; font-weight: 700; font-size: calc(19px * var(--escala-base)); margin-top: 0.35em; }
+  .comp-linha { margin-bottom: calc(9px * var(--escala-base)); }
+  .comp-label { text-align: center; font-size: calc(15px * var(--escala-base)); font-weight: 500; color: #c3cbdb; text-transform: uppercase; margin-bottom: 3px; }
+  .comp-valores { display: flex; align-items: center; gap: calc(12px * var(--escala-base)); }
+  .comp-valor { font-weight: 800; font-size: calc(19px * var(--escala-base)); min-width: calc(36px * var(--escala-base)); }
+  .comp-valor.a { color: var(--cor-verde); text-align: right; }
+  .comp-valor.b { color: var(--cor-branco); text-align: left; }
+  .comp-barra { flex: 1; height: calc(11px * var(--escala-base)); border-radius: 999px; background: #1a2e5a; overflow: hidden; display: flex; }
+  .comp-barra .a { background: var(--cor-verde); }
+  .comp-barra .b { background: #7c8698; }
+  #disciplina .comp-valor.a { color: var(--cor-amarelo); }
+  #disciplina .comp-barra .a { background: var(--cor-amarelo); }
+
+  /* ---- Destaques + Forma, agora dentro do espaço de cada time ---- */
+  .extra-time { top: 60%; width: 17%; text-align: center; }
+  #extra-a { left: 3.8%; }
+  #extra-b { left: 79.2%; }
+  .extra-time .mini-titulo {
+    font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cor-amarelo);
+    font-size: calc(12px * var(--escala-base)); margin: 0.8em 0 0.35em;
+  }
+  #titulo-forma-a, #titulo-forma-b { margin-top: 1.4em; }
+  .extra-destaques .destaque-linha { display: flex; justify-content: space-between; gap: 4px; font-size: calc(12px * var(--escala-base)); text-align: left; }
+  .extra-destaques .destaque-linha .nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .extra-destaques .destaque-linha .gols { color: var(--cor-amarelo); font-weight: 700; white-space: nowrap; }
+  .extra-forma { display: flex; align-items: center; justify-content: center; gap: calc(6px * var(--escala-base)); }
+  .forma-bolinha {
+    width: calc(22px * var(--escala-base)); height: calc(22px * var(--escala-base)); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: calc(11px * var(--escala-base)); color: #0a0f1f;
+  }
+  .forma-v { background: var(--cor-verde); }
+  .forma-e { background: #b8c0d0; }
+  .forma-d { background: var(--cor-vermelho); color: var(--cor-branco); }
+  #baixar-btn {
+    position: absolute; top: 1.5%; right: 1.5%; z-index: 5;
+    padding: calc(6px * var(--escala-base)) calc(14px * var(--escala-base));
+    background: var(--cor-amarelo); color: #0a0f1f; border: none; border-radius: 8px;
+    font-family: 'Poppins', sans-serif; font-weight: 800; cursor: pointer;
+    font-size: calc(13px * var(--escala-base));
+  }
+  body.modo-overlay #baixar-btn { display: none; }
+  #erro { color: var(--cor-vermelho); text-align: center; padding: 24px; font-size: 14px; background: rgba(0,0,0,0.7); }
+</style>
+</head>
+<body>
+
+<div id="card">
+  <div class="abs" id="logo-transmissao"><img id="logo-transmissao-img" src="" alt="" style="display:none;" onerror="this.style.display='none'" /></div>
+
+  <div class="abs header-valor" id="valor-info">—</div>
+
+  <div class="abs logo-time" id="logo-a"><img src="" alt="" style="display:none;" onerror="this.style.display='none'" /></div>
+  <div class="abs logo-time" id="logo-b"><img src="" alt="" style="display:none;" onerror="this.style.display='none'" /></div>
+
+  <div class="abs barra-nome" id="barra-a">
+    <div class="nome" id="nome-a">—</div>
+  </div>
+  <div class="abs barra-nome" id="barra-b">
+    <div class="nome" id="nome-b">—</div>
+  </div>
+
+  <div class="abs situacao-time" id="situacao-a">
+    <div class="pos" id="pos-a">—</div>
+    <div class="badge" id="badge-a"></div>
+  </div>
+  <div class="abs situacao-time" id="situacao-b">
+    <div class="pos" id="pos-b">—</div>
+    <div class="badge" id="badge-b"></div>
+  </div>
+
+  <div class="abs extra-time" id="extra-a">
+    <div class="mini-titulo" id="titulo-destaques-a" style="display:none;">Destaques</div>
+    <div class="extra-destaques" id="destaques-a"></div>
+    <div class="mini-titulo" id="titulo-forma-a" style="display:none;">Últimos 5 Jogos</div>
+    <div class="extra-forma" id="forma-a"></div>
+  </div>
+  <div class="abs extra-time" id="extra-b">
+    <div class="mini-titulo" id="titulo-destaques-b" style="display:none;">Destaques</div>
+    <div class="extra-destaques" id="destaques-b"></div>
+    <div class="mini-titulo" id="titulo-forma-b" style="display:none;">Últimos 5 Jogos</div>
+    <div class="extra-forma" id="forma-b"></div>
+  </div>
+
+  <div class="abs" id="centro">
+    <div class="secao-titulo cinza">Probabilidade de Vitória</div>
+    <div class="prob-linha">
+      <div class="prob-valor a" id="prob-a">—</div>
+      <div class="prob-barra"><div class="a" id="prob-barra-a"></div><div class="b" id="prob-barra-b"></div></div>
+      <div class="prob-valor b" id="prob-b">—</div>
+    </div>
+    <div class="favorito" id="txt-favorito"></div>
+
+    <div class="secao-titulo">Comparativo Estatístico</div>
+    <div id="comparativo"></div>
+
+    <div class="secao-titulo">Disciplina</div>
+    <div id="disciplina"></div>
+  </div>
+
+  <button id="baixar-btn" onclick="baixarComoImagem()">⬇ Baixar imagem</button>
+</div>
+
+<script>
+const SUPABASE_URL = "https://tijoqfkjabapbanpsuqd.supabase.co";
+const SUPABASE_KEY = "sb_publishable_4Cl2yym3lTvWWh1A-mRIFQ_Uk3B5vgP";
+const LOGOS_BUCKET = "logos";
+
+const params = new URLSearchParams(location.search);
+const JOGO_ID = params.get("jogo_id");
+const TORNEIO_PARAM = params.get("torneio");
+const LOGO_TRANSMISSAO = params.get("transmissao");
+const REFRESH_SEGUNDOS = Number(params.get("refresh") || 0);
+if (params.get("modo") === "overlay") document.body.classList.add("modo-overlay");
+if (params.get("fundo") === "solido") document.body.classList.add("fundo-solido");
+
+function logoTransmissaoUrl(arquivo) {
+  return `${SUPABASE_URL}/storage/v1/object/public/${LOGOS_BUCKET}/transmissao/${arquivo}`;
+}
+
+let _cacheListaLogosTimes = null;
+
+function normalizarNomeArquivo(txt) {
+  return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+}
+
+async function listarLogosTimes() {
+  if (_cacheListaLogosTimes !== null) return _cacheListaLogosTimes;
+  try {
+    const resp = await fetch(`${SUPABASE_URL}/storage/v1/object/list/${LOGOS_BUCKET}`, {
+      method: "POST",
+      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ prefix: "times/", limit: 1000 }),
+    });
+    if (!resp.ok) throw new Error(`list falhou (${resp.status})`);
+    const dados = await resp.json();
+    _cacheListaLogosTimes = dados.map((f) => f.name).filter((n) => n && !n.endsWith("/"));
+  } catch (e) {
+    console.error("Não consegui listar logos de times:", e);
+    _cacheListaLogosTimes = [];
+  }
+  return _cacheListaLogosTimes;
+}
+
+async function logoTimeUrlPorNome(nomeTime) {
+  const arquivos = await listarLogosTimes();
+  const nomeNorm = normalizarNomeArquivo(nomeTime);
+  for (const arq of arquivos) {
+    const semExt = arq.replace(/\.[^/.]+$/, "");
+    const arqNorm = normalizarNomeArquivo(semExt);
+    if (arqNorm.startsWith(nomeNorm) || nomeNorm.startsWith(arqNorm)) {
+      return `${SUPABASE_URL}/storage/v1/object/public/${LOGOS_BUCKET}/times/${arq}`;
+    }
+  }
+  return null;
+}
+
+async function fetchJSON(url) {
+  const resp = await fetch(url, { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } });
+  if (!resp.ok) throw new Error(`Falha ao buscar ${url} (${resp.status})`);
+  return resp.json();
+}
+
+async function fetchJogo(jogoId) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/jogos?select=id,competicao_id,time_mandante_id,time_visitante_id,data,fase,gols_mandante,gols_visitante&id=eq.${jogoId}`);
+  return rows[0] || null;
+}
+async function fetchConfrontoDoJogo(jogoId) {
+  const rows = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/chave_confronto?select=jogo_ida_id,jogo_volta_id,serie` +
+    `&or=(jogo_ida_id.eq.${jogoId},jogo_volta_id.eq.${jogoId})`
+  );
+  return rows[0] || null;
+}
+async function fetchPlacarJogo(jogoId) {
+  const rows = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/jogos?select=gols_mandante,gols_visitante,time_mandante_id,time_visitante_id,status&id=eq.${jogoId}`
+  );
+  return rows[0] || null;
+}
+async function fetchCompeticao(competicaoId) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/competicoes?select=nome_competicao,divisao,categoria&id=eq.${competicaoId}`);
+  return rows[0] || null;
+}
+async function fetchTimesNomes(ids) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/times?select=id,nome_app&id=in.(${ids.join(",")})`);
+  const mapa = {};
+  rows.forEach((r) => (mapa[r.id] = r.nome_app));
+  return mapa;
+}
+async function fetchClassificacao(competicaoId) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/classificacao?select=time_id,pontos,jogos,vitorias,empates,derrotas,gols_pro,gols_contra&competicao_id=eq.${competicaoId}`);
+  const porTime = {};
+  for (const r of rows) {
+    const acc = porTime[r.time_id] || (porTime[r.time_id] = { time_id: r.time_id, pontos: 0, jogos: 0, vitorias: 0, empates: 0, derrotas: 0, gols_pro: 0, gols_contra: 0 });
+    acc.pontos += Number(r.pontos) || 0;
+    acc.jogos += Number(r.jogos) || 0;
+    acc.vitorias += Number(r.vitorias) || 0;
+    acc.empates += Number(r.empates) || 0;
+    acc.derrotas += Number(r.derrotas) || 0;
+    acc.gols_pro += Number(r.gols_pro) || 0;
+    acc.gols_contra += Number(r.gols_contra) || 0;
+  }
+  const lista = Object.values(porTime);
+  lista.forEach((t) => (t.saldo_gols = t.gols_pro - t.gols_contra));
+  lista.sort((a, b) => b.pontos - a.pontos || b.vitorias - a.vitorias || b.saldo_gols - a.saldo_gols || b.gols_pro - a.gols_pro);
+  lista.forEach((t, i) => (t.posicao = i + 1));
+  return lista;
+}
+async function fetchUltimosJogos(competicaoId, timeId, limite = 5) {
+  const rows = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/jogos?select=gols_mandante,gols_visitante,time_mandante_id,time_visitante_id,data` +
+    `&competicao_id=eq.${competicaoId}&status=eq.FINALIZADO` +
+    `&or=(time_mandante_id.eq.${timeId},time_visitante_id.eq.${timeId})` +
+    `&order=data.desc&limit=${limite}`
+  );
+  const resultados = rows.map((j) => {
+    const ehMandante = j.time_mandante_id == timeId;
+    const golsPro = ehMandante ? j.gols_mandante : j.gols_visitante;
+    const golsContra = ehMandante ? j.gols_visitante : j.gols_mandante;
+    if (golsPro > golsContra) return "V";
+    if (golsPro === golsContra) return "E";
+    return "D";
+  });
+  return resultados.reverse(); // mais antigo → mais recente, esquerda pra direita
+}
+
+async function fetchArtilheiros(competicaoId, timeId, limite = 3) {
+  const rows = await fetchJSON(`${SUPABASE_URL}/rest/v1/atleta_stats?select=gols,atletas(nome)&competicao_id=eq.${competicaoId}&time_id=eq.${timeId}&order=gols.desc&limit=${limite}`);
+  return rows.filter((r) => r.atletas && r.gols > 0).map((r) => ({ nome: r.atletas.nome, gols: r.gols }));
+}
+async function fetchFaltas(competicaoId, timeId) {
+  // Jogos do time nessa competição, pra saber quem foi o adversário em cada um
+  const jogos = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/jogos?select=id,time_mandante_id,time_visitante_id` +
+    `&competicao_id=eq.${competicaoId}&or=(time_mandante_id.eq.${timeId},time_visitante_id.eq.${timeId})`
+  );
+  if (jogos.length === 0) return { cometidas: 0, sofridas: 0 };
+
+  const jogoIds = jogos.map((j) => j.id);
+  const oponentePorJogo = {};
+  jogos.forEach((j) => {
+    oponentePorJogo[j.id] = j.time_mandante_id == timeId ? j.time_visitante_id : j.time_mandante_id;
+  });
+
+  // sumula_eventos.time_id = quem COMETEU a falta (mesma lógica do raio_x_app.py)
+  const eventos = await fetchJSON(
+    `${SUPABASE_URL}/rest/v1/sumula_eventos?select=jogo_id,time_id&tipo=eq.falta&jogo_id=in.(${jogoIds.join(",")})`
+  );
+
+  let cometidas = 0, sofridas = 0;
+  for (const ev of eventos) {
+    if (ev.time_id == timeId) cometidas++;
+    else if (ev.time_id == oponentePorJogo[ev.jogo_id]) sofridas++;
+  }
+  return { cometidas, sofridas };
+}
+
+async function fetchDisciplina(competicaoId, timeId) {
+  try {
+    const [rowsCartoes, faltas] = await Promise.all([
+      fetchJSON(
+        `${SUPABASE_URL}/rest/v1/sumula_atletas?select=amarelo,vermelho,jogos!inner(competicao_id)&time_id=eq.${timeId}&jogos.competicao_id=eq.${competicaoId}`
+      ),
+      fetchFaltas(competicaoId, timeId),
+    ]);
+    let amarelos = 0, vermelhos = 0;
+    for (const r of rowsCartoes) {
+      if (r.amarelo) amarelos++;
+      if (r.vermelho) vermelhos++;
+    }
+    return { amarelos, vermelhos, faltasCometidas: faltas.cometidas, faltasSofridas: faltas.sofridas };
+  } catch (e) {
+    console.error("Erro ao buscar disciplina:", e);
+    return { amarelos: 0, vermelhos: 0, faltasCometidas: 0, faltasSofridas: 0 };
+  }
+}
+
+function temSerieBronze(torneio, divisao, categoria) {
+  // Mesma regra do app.py/raio_x_app.py: Paulista-Iniciação A1/A2 (24
+  // times) tem Série Bronze. Aqui `nome_competicao` vem só como
+  // "Paulista" — quem distingue Iniciação de Base é a categoria (Sub-7
+  // a Sub-10).
+  if (String(torneio || "").trim().toLowerCase() !== "paulista") return false;
+  if (!["A1", "A2"].includes(String(divisao || ""))) return false;
+  const m = String(categoria || "").match(/(\d+)/);
+  return !!m && parseInt(m[1], 10) <= 10;
+}
+function calcularFaixas(totalTimes, torneio, divisao, categoria) {
+  if (totalTimes <= 0) return { ouro: 0, prata_fim: 0, bronze_fim: null };
+  const bronzeAtivo = temSerieBronze(torneio, divisao, categoria);
+  return {
+    ouro: Math.min(8, totalTimes),
+    prata_fim: Math.min(16, totalTimes),
+    bronze_fim: bronzeAtivo ? Math.min(24, totalTimes) : null,
+  };
+}
+function montarMetas(lista, torneio, divisao, categoria) {
+  const faixas = calcularFaixas(lista.length, torneio, divisao, categoria);
+  const porTimeId = {};
+  lista.forEach((t) => {
+    let tipo;
+    if (t.posicao <= faixas.ouro) tipo = "Ouro";
+    else if (t.posicao <= faixas.prata_fim) tipo = "Prata";
+    else if (faixas.bronze_fim && t.posicao <= faixas.bronze_fim) tipo = "Bronze";
+    else tipo = "Não Classificado";
+    porTimeId[t.time_id] = { tipo };
+  });
+  return porTimeId;
+}
+function calcForca(jogos, golsPro, golsContra, vitorias) {
+  const n = jogos > 0 ? jogos : 1;
+  return Math.max((golsPro / n) * 1.8 + vitorias * 0.3 - (golsContra / n) * 0.8, 0.1);
+}
+
+function classeBadge(tipo) {
+  if (tipo === "Ouro") return "badge-ouro";
+  if (tipo === "Prata") return "badge-prata";
+  if (tipo === "Bronze") return "badge-bronze";
+  return "badge-naoclassificado";
+}
+
+function montarComparativo(ca, cb) {
+  const aprovA = Math.round((ca.pontos / Math.max(ca.jogos * 3, 1)) * 1000) / 10;
+  const aprovB = Math.round((cb.pontos / Math.max(cb.jogos * 3, 1)) * 1000) / 10;
+  const linhas = [
+    ["Aproveitamento %", aprovA, aprovB, (v) => v.toFixed(1)],
+    ["Vitórias", ca.vitorias, cb.vitorias, (v) => v],
+    ["Gols Marcados", ca.gols_pro, cb.gols_pro, (v) => v],
+    ["Gols Sofridos", ca.gols_contra, cb.gols_contra, (v) => v],
+  ];
+  const container = document.getElementById("comparativo");
+  container.innerHTML = "";
+  for (const [label, va, vb, fmt] of linhas) {
+    const total = Math.max(va + vb, 0.0001);
+    const fracA = (va / total) * 100;
+    const div = document.createElement("div");
+    div.className = "comp-linha";
+    div.innerHTML = `
+      <div class="comp-label">${label}</div>
+      <div class="comp-valores">
+        <div class="comp-valor a">${fmt(va)}</div>
+        <div class="comp-barra"><div class="a" style="width:${fracA}%"></div><div class="b" style="width:${100 - fracA}%"></div></div>
+        <div class="comp-valor b">${fmt(vb)}</div>
+      </div>`;
+    container.appendChild(div);
+  }
+}
+
+function montarDisciplina(discA, discB) {
+  const linhas = [
+    ["Faltas Cometidas", discA.faltasCometidas, discB.faltasCometidas],
+    ["Faltas Sofridas", discA.faltasSofridas, discB.faltasSofridas],
+    ["Cartões Amarelos", discA.amarelos, discB.amarelos],
+    ["Cartões Vermelhos", discA.vermelhos, discB.vermelhos],
+  ];
+  const container = document.getElementById("disciplina");
+  container.innerHTML = "";
+  for (const [label, va, vb] of linhas) {
+    const total = Math.max(va + vb, 0.0001);
+    const fracA = (va / total) * 100;
+    const div = document.createElement("div");
+    div.className = "comp-linha";
+    div.innerHTML = `
+      <div class="comp-label">${label}</div>
+      <div class="comp-valores">
+        <div class="comp-valor a">${va}</div>
+        <div class="comp-barra"><div class="a" style="width:${fracA}%"></div><div class="b" style="width:${100 - fracA}%"></div></div>
+        <div class="comp-valor b">${vb}</div>
+      </div>`;
+    container.appendChild(div);
+  }
+}
+
+function montarDestaquesTime(lado, artilheiros) {
+  const container = document.getElementById(`destaques-${lado}`);
+  container.innerHTML = "";
+  if (artilheiros.length === 0) return;
+  document.getElementById(`titulo-destaques-${lado}`).style.display = "block";
+  for (const item of artilheiros) {
+    const div = document.createElement("div");
+    div.className = "destaque-linha";
+    div.innerHTML = `<span class="nome">${item.nome}</span><span class="gols">${item.gols} gol(s)</span>`;
+    container.appendChild(div);
+  }
+}
+
+function montarFormaTime(lado, forma) {
+  const container = document.getElementById(`forma-${lado}`);
+  container.innerHTML = "";
+  if (forma.length === 0) return;
+  document.getElementById(`titulo-forma-${lado}`).style.display = "block";
+  for (const r of forma) {
+    const bolinha = document.createElement("div");
+    bolinha.className = `forma-bolinha forma-${r.toLowerCase()}`;
+    bolinha.textContent = r;
+    container.appendChild(bolinha);
+  }
+}
+
+function aplicarEscalaBase() {
+  const card = document.getElementById("card");
+  const escala = card.clientWidth / 1536; // 1536 = largura de design do template
+  document.documentElement.style.setProperty("--escala-base", escala);
+}
+
+async function montarPagina() {
+  aplicarEscalaBase();
+  if (LOGO_TRANSMISSAO) {
+    const img = document.getElementById("logo-transmissao-img");
+    img.src = logoTransmissaoUrl(LOGO_TRANSMISSAO);
+    img.style.display = "block";
+  }
+
+  if (!JOGO_ID) {
+    document.getElementById("card").insertAdjacentHTML("beforeend", '<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Faltou o parâmetro ?jogo_id= na URL.</div>');
+    return;
+  }
+
+  const jogo = await fetchJogo(JOGO_ID);
+  if (!jogo) {
+    document.getElementById("card").insertAdjacentHTML("beforeend", '<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Jogo não encontrado.</div>');
+    return;
+  }
+
+  const [competicao, nomes] = await Promise.all([
+    fetchCompeticao(jogo.competicao_id),
+    fetchTimesNomes([jogo.time_mandante_id, jogo.time_visitante_id]),
+  ]);
+
+  const nomeA = nomes[jogo.time_mandante_id] || "—";
+  const nomeB = nomes[jogo.time_visitante_id] || "—";
+
+  const fase = (jogo.fase || "Grupos").toString().trim();
+  const mataMata = fase && fase.toLowerCase() !== "grupos";
+
+  // ---- Ida/Volta + agregado (só faz sentido em mata-mata de ida-e-volta;
+  // confronto de jogo único não ganha rótulo nenhum) ----
+  let rotuloPerna = "";
+  let agregadoTexto = "";
+  let serieTexto = "";
+  if (mataMata) {
+    const confronto = await fetchConfrontoDoJogo(JOGO_ID);
+    if (confronto) {
+      if (confronto.serie) serieTexto = confronto.serie.toUpperCase();
+
+      if (confronto.jogo_ida_id && confronto.jogo_volta_id) {
+        const ehVolta = String(confronto.jogo_volta_id) === String(JOGO_ID);
+        if (ehVolta) {
+          rotuloPerna = "VOLTA";
+          const ida = await fetchPlacarJogo(confronto.jogo_ida_id);
+          if (ida && ida.status === "FINALIZADO" && ida.gols_mandante != null && ida.gols_visitante != null) {
+            const golsIdaA = ida.time_mandante_id == jogo.time_mandante_id ? ida.gols_mandante : ida.gols_visitante;
+            const golsIdaB = ida.time_mandante_id == jogo.time_mandante_id ? ida.gols_visitante : ida.gols_mandante;
+            const golsAtuaisA = jogo.gols_mandante ?? 0;
+            const golsAtuaisB = jogo.gols_visitante ?? 0;
+            agregadoTexto = `AGREGADO ${golsIdaA + golsAtuaisA} x ${golsIdaB + golsAtuaisB}`;
+          }
+        } else {
+          rotuloPerna = "IDA";
+        }
+      }
+    }
+  }
+
+  const partesHeader = [TORNEIO_PARAM || competicao?.nome_competicao, competicao?.divisao, competicao?.categoria]
+    .filter(Boolean)
+    .map((p) => p.toUpperCase());
+  if (mataMata) partesHeader.push(`🏆 ${fase.toUpperCase()}`);
+  if (serieTexto) partesHeader.push(serieTexto);
+  if (rotuloPerna) partesHeader.push(rotuloPerna);
+  if (agregadoTexto) partesHeader.push(agregadoTexto);
+  document.getElementById("valor-info").textContent = partesHeader.length ? partesHeader.join("  •  ") : "—";
+
+  document.getElementById("nome-a").textContent = nomeA;
+  document.getElementById("nome-b").textContent = nomeB;
+
+  const [logoUrlA, logoUrlB] = await Promise.all([logoTimeUrlPorNome(nomeA), logoTimeUrlPorNome(nomeB)]);
+  if (logoUrlA) { const img = document.querySelector("#logo-a img"); img.src = logoUrlA; img.style.display = "block"; }
+  if (logoUrlB) { const img = document.querySelector("#logo-b img"); img.src = logoUrlB; img.style.display = "block"; }
+
+  const classificacao = await fetchClassificacao(jogo.competicao_id);
+  const ca = classificacao.find((t) => t.time_id == jogo.time_mandante_id);
+  const cb = classificacao.find((t) => t.time_id == jogo.time_visitante_id);
+  if (!ca || !cb) {
+    document.getElementById("card").insertAdjacentHTML("beforeend", '<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Sem classificação suficiente pra essa competição ainda.</div>');
+    return;
+  }
+
+  document.getElementById("pos-a").textContent = `${ca.posicao}º colocado - ${ca.pontos} pontos`;
+  document.getElementById("pos-b").textContent = `${cb.posicao}º colocado - ${cb.pontos} pontos`;
+
+  const metas = montarMetas(classificacao, competicao?.nome_competicao, competicao?.divisao, competicao?.categoria);
+  const metaA = metas[jogo.time_mandante_id];
+  const metaB = metas[jogo.time_visitante_id];
+  if (!mataMata) {
+    if (metaA) document.getElementById("badge-a").innerHTML = `<span class="${classeBadge(metaA.tipo)}">${metaA.tipo}</span>`;
+    if (metaB) document.getElementById("badge-b").innerHTML = `<span class="${classeBadge(metaB.tipo)}">${metaB.tipo}</span>`;
+  }
+
+  const forcaA = calcForca(ca.jogos, ca.gols_pro, ca.gols_contra, ca.vitorias);
+  const forcaB = calcForca(cb.jogos, cb.gols_pro, cb.gols_contra, cb.vitorias);
+  const probA = Math.round((forcaA / (forcaA + forcaB)) * 100);
+  const probB = 100 - probA;
+  document.getElementById("prob-a").textContent = `${probA}%`;
+  document.getElementById("prob-b").textContent = `${probB}%`;
+  document.getElementById("prob-barra-a").style.width = `${probA}%`;
+  document.getElementById("prob-barra-b").style.width = `${probB}%`;
+  if (probA !== probB) {
+    const favorito = probA > probB ? nomeA : nomeB;
+    const fav = document.getElementById("txt-favorito");
+    fav.textContent = `Favorito: ${favorito.toUpperCase()}`;
+    fav.style.color = probA > probB ? "var(--cor-amarelo)" : "var(--cor-vermelho)";
+  }
+
+  montarComparativo(ca, cb);
+
+  const [discA, discB] = await Promise.all([
+    fetchDisciplina(jogo.competicao_id, jogo.time_mandante_id),
+    fetchDisciplina(jogo.competicao_id, jogo.time_visitante_id),
+  ]);
+  montarDisciplina(discA, discB);
+
+  const [artA, artB] = await Promise.all([
+    fetchArtilheiros(jogo.competicao_id, jogo.time_mandante_id),
+    fetchArtilheiros(jogo.competicao_id, jogo.time_visitante_id),
+  ]);
+  montarDestaquesTime("a", artA);
+  montarDestaquesTime("b", artB);
+
+  const [formaA, formaB] = await Promise.all([
+    fetchUltimosJogos(jogo.competicao_id, jogo.time_mandante_id),
+    fetchUltimosJogos(jogo.competicao_id, jogo.time_visitante_id),
+  ]);
+  montarFormaTime("a", formaA);
+  montarFormaTime("b", formaB);
+
+  ajustarEscalaCentro();
+}
+
+function ajustarEscalaCentro() {
+  const centro = document.getElementById("centro");
+  const card = document.getElementById("card");
+  centro.style.transform = "none"; // mede sem escala aplicada primeiro
+  const cardRect = card.getBoundingClientRect();
+  const centroRect = centro.getBoundingClientRect();
+  const limiteInferior = cardRect.top + cardRect.height * 0.72; // até pouco antes da quadra/rodapé
+  const disponivel = limiteInferior - centroRect.top;
+  const necessario = centroRect.height;
+  if (necessario > disponivel && disponivel > 0) {
+    const escala = Math.max(disponivel / necessario, 0.55);
+    centro.style.transform = `scale(${escala})`;
+    centro.style.transformOrigin = "top center";
+  }
+}
+
+function baixarComoImagem() {
+  const btn = document.getElementById("baixar-btn");
+  btn.style.display = "none";
+  html2canvas(document.getElementById("card"), { backgroundColor: null, scale: 2, useCORS: true }).then((canvas) => {
+    btn.style.display = "block";
+    const link = document.createElement("a");
+    link.download = "ficha_transmissao.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+montarPagina().catch((err) => {
+  console.error(err);
+  document.getElementById("card").insertAdjacentHTML("beforeend", `<div id="erro" class="abs" style="left:0;top:0;width:100%;height:100%;">Erro ao carregar dados: ${err.message}</div>`);
+});
+
+let _resizeTimer = null;
+window.addEventListener("resize", () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => {
+    aplicarEscalaBase();
+    ajustarEscalaCentro();
+  }, 150);
+});
+
+if (REFRESH_SEGUNDOS > 0) {
+  setInterval(() => location.reload(), REFRESH_SEGUNDOS * 1000);
+}
+</script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"aece2c08f5","applicationID":"543213780","transactionName":"ZgMBMkBYDRcCARVQC19JNhRbFgoKBwcZFxRZFg==","queueTime":0,"applicationTime":273,"atts":"SkQCRAhCHhk=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
